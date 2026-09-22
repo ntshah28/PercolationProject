@@ -3,6 +3,8 @@ import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 public class Percolation {
     private int n;
     private int[] arr;
+    private boolean[] boolArr;
+    private WeightedQuickUnionUF uf;
 
     // creates n-by-n grid, with all sites initially blocked
     public Percolation(int n) {
@@ -11,9 +13,12 @@ public class Percolation {
         }
         this.n=n;
         arr = new int [n*n+2];
+        boolArr = new boolean[arr.length];
         for(int i =0; i<arr.length;i++) {
             arr[i] = i;
+            boolArr[i] = false;
         }
+        uf = new WeightedQuickUnionUF(n*n+2);
     }
 
     // opens the site (row, col) if it is not open already
