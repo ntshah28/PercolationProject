@@ -23,9 +23,9 @@ public class Percolation {
 
     // opens the site (row, col) if it is not open already
 
-    public void open(int row, int col) {
+    public void open(int row, int col) throws IllegalArgumentException{
         int index = (row-1)*n+col;
-        if(((row-1)*n+col)<0||((row-1)*n+col)>arr.length) {
+        if(((row-1)*n+col)<=0||((row-1)*n+col)>n*n) {
             throw new IllegalArgumentException("not allowed");
         }
         this.boolArr[index] = true;
@@ -33,9 +33,9 @@ public class Percolation {
     }
 
     // is the site (row, col) open?
-    public boolean isOpen(int row, int col) {
+    public boolean isOpen(int row, int col) throws IllegalArgumentException{
 
-        if(((row-1)*n+col)<0||((row-1)*n+col)>arr.length) {
+        if(((row-1)*n+col)<=0||((row-1)*n+col)>n*n) {
             throw new IllegalArgumentException("not allowed");
         }
         return boolArr[(row-1)*n+col];
