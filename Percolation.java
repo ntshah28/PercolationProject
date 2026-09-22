@@ -22,12 +22,27 @@ public class Percolation {
     }
 
     // opens the site (row, col) if it is not open already
-    /*
-    public void open(int row, int col)
+
+    public void open(int row, int col) {
+        int index = (row-1)*n+col;
+        if(((row-1)*n+col)<0||((row-1)*n+col)>arr.length) {
+            throw new IllegalArgumentException("not allowed");
+        }
+        this.boolArr[index] = true;
+
+    }
 
     // is the site (row, col) open?
-    public boolean isOpen(int row, int col)
+    public boolean isOpen(int row, int col) {
 
+        if(((row-1)*n+col)<0||((row-1)*n+col)>arr.length) {
+            throw new IllegalArgumentException("not allowed");
+        }
+        return boolArr[(row-1)*n+col];
+
+    }
+
+        /*
     // is the site (row, col) full?
     public boolean isFull(int row, int col)
 
