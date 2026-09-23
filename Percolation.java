@@ -38,6 +38,7 @@ public class Percolation {
         if(((row-1)*n+col)<=0||((row-1)*n+col)>n*n) {
             throw new IllegalArgumentException("not allowed");
         }
+
         return boolArr[(row-1)*n+col];
 
     }
