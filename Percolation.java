@@ -43,13 +43,26 @@ public class Percolation {
 
     }
 
-        /*
     // is the site (row, col) full?
-    public boolean isFull(int row, int col)
+    public boolean isFull(int row, int col) {
+        if (!isOpen(row,col)) {
+            return true;
+        }
+        return false;
+    }
+
 
     // returns the number of open sites
-    public int numberOfOpenSites()
-
+    public int numberOfOpenSites() {
+        int count = 0;
+        for(int i = 1; i<arr.length;i++) {
+            if(boolArr[i] == true) {
+                count++;
+            }
+        }
+        return count;
+    }
+/*
     // does the system percolate?
     public boolean percolates()
 
