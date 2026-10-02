@@ -12,6 +12,7 @@ public class PercolationStats {
         }
 
 
+
         this.trials =trials;
         threshold =new double[trials];
 
