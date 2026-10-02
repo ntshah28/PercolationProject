@@ -11,6 +11,7 @@ public class PercolationStats {
             throw new IllegalArgumentException("n and trials must be positive");
         }
 
+
         this.trials =trials;
         threshold =new double[trials];
 
