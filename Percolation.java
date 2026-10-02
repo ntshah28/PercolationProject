@@ -28,7 +28,30 @@ public class Percolation {
         if((row<=0)||(row>n)||(col<=0)||(col>n)) {
             throw new IllegalArgumentException("not allowed");
         }
+        if(isOpen(row,col)) {
+            return;
+        }
         this.boolArr[index] = true;
+
+        if(row==1) {
+            uf.union(index,0);
+        }
+        if(row==n) {
+            uf.union(index,n*n+1);
+        }
+        if (row > 1 && isOpen(row - 1,col)) {
+            uf.union(index, (row-2)*n +col);
+        }
+        if (row < n && isOpen(row+1,col)) {
+            uf.union(index, row * n + col);
+        }
+        if (col > 1 && isOpen(row, col-1)) {
+            uf.union(index, (row - 1) * n + (col - 1));
+        }
+        if (col < n && isOpen(row, col + 1)) {
+            uf.union(index, (row-1) * n + (col+ 1));
+        }
+
 
     }
 
@@ -45,10 +68,11 @@ public class Percolation {
 
     // is the site (row, col) full?
     public boolean isFull(int row, int col) {
-        if (!isOpen(row,col)) {
-            return true;
+        if(row<=0||row>n||col<=0||col>n) {
+            throw new IllegalArgumentException("Out of bounds");
         }
-        return false;
+        int index = (row-1)*n+col;
+        return isOpen(row,col) && (uf.connected(0,index));
     }
 
 
@@ -62,10 +86,12 @@ public class Percolation {
         }
         return count;
     }
-/*
-    // does the system percolate?
-    public boolean percolates()
 
+    // does the system percolate?
+    public boolean percolates() {
+        return uf.connected(0,n*n+1);
+    }
+/*
     // test client (optional)
     public static void main(String[] args)
 
